@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Core CSS functionality -->
+    <style>
+      .navigation {
+        display: flex;
+        flex-direction: column;
+
+        position: absolute;
+        top: 0;
+        right: 1em;
+
+        text-align: center;
+      }
+
+      .navigation__list {
+        list-style-type: none;
+        padding-left: unset;
+
+        position: relative;
+        z-index: 1;
+
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        filter: alpha(opacity=0);
+      }
+
+      .navigation__label {
+        position: relative;
+        z-index: 1;
+      }
+
+      .navigation__label:hover {
+        cursor: pointer;
+      }
+
+      /**
+       * Note, for accessibility neither of the following may be used
+       * display: none;
+       * visibility: hidden;
+       */
+      .navigation__checkbox {
+        position: fixed;
+        opacity: 0;
+        filter: alpha(opacity=0); /* Old Microsoft opacity */
+      }
+
+      .navigation__checkbox:checked ~ .navigation__list,
+      .navigation__checkbox[checked] ~ .navigation__list {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        filter: alpha(opacity=1);
+      }
+
+      .navigation__checkbox:checked + .navigation__label::before,
+      .navigation__checkbox[checked] + .navigation__label::before {
+        content: '';
+
+        background-color: lightblue;
+        opacity: 0.2;
+        filter: alpha(opacity=20);
+
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      .navigation__checkbox:checked + .navigation__label:hover::before,
+      .navigation__checkbox[checked] + .navigation__label:hover::before {
+        cursor: not-allowed;
+      }
+    </style>
+
+    <!-- Enhancements to make presentation prettier -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Thanks be to https://realfavicongenerator.net -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Bog-standard head data -->
+    <meta charset="UTF-8">
+    <title>Pure CSS and HTML Navigation Menu</title>
+  </head>
+
+
+  <body>
+    <header>
+      <h1 class="site__title">
+        Pure CSS and HTML Navigation Menu
+      </h1>
+
+      <nav class="navigation">
+        <input class="hidden navigation__checkbox"
+               id="site__navigation__checkbox"
+               type="checkbox">
+
+        <label class="navigation__label"
+               for="site__navigation__checkbox"
+               title="Open or close navigation menu"
+        >Menu</label>
+
+        <ul class="hidden navigation__list">
+          <li class="navigation__item">
+            <a class="navigation__link"
+               href="/css-navigation-menu/"
+               title="Main index page for this site"
+            >Home</a>
+          </li>
+
+          <li class="navigation__item">
+            <a class="navigation__link"
+               href="https://github.com/web-dev-examples/css-navigation-menu/"
+               title="Git repository with source, and documentation, for this site"
+            >Source</a>
+          </li>
+
+          <li class="navigation__item">
+            <a class="navigation__link"
+               href="https://liberapay.com/web-dev-examples/"
+               title="Consider supporting this, and similar, Open Source projects"
+            >Sponsor</a>
+          </li>
+
+          <li class="navigation__sub_menu">
+            <input class="hidden navigation__checkbox"
+                  id="sub_menu__navigation__checkbox"
+                  type="checkbox">
+
+            <label class="navigation__label"
+                  for="sub_menu__navigation__checkbox"
+                  title="Open or close navigation sub-menu"
+            >Sub-menu</label>
+
+            <ul class="hidden navigation__list">
+              <li class="navigation__item">
+                <a class="navigation__link"
+                   href="#"
+                   title="Example sub-menu link to somewhere"
+                >Somewhere</a>
+              </li>
+
+              <li class="navigation__item">
+                <a class="navigation__link"
+                   href="#"
+                   title="Example sub-menu link to somewhere"
+                >Elsewhere</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="navigation__item">
+            <a class="navigation__link"
+               href="https://github.com/S0AndS0/"
+               title="GitHub profile of author/maintainer of this project"
+            >Author</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <h2 class="article__title">
+
+        </h2>
+
+        <p>
+          This site demonstrates utilizing pure CSS3 and HTML5 to build a
+          menu. Prefix the current URL with <code>view-source:</code> to view
+          the core source code that achieves this functionality.
+        </p>
+
+        <p>
+          Alternatively, the source code may be cloned via Git from
+          <a href="https://github.com/web-dev-examples/css-navigation-menu">
+            GitHub
+          </a>
+        </p>
+
+        <p>
+          <strong>With SSH:</strong>
+        </p>
+        <pre>
+          <code>git clone git@github.com/web-dev-examples/css-navigation-menu.git</code>
+        </pre>
+
+        <p>
+          <strong>With HTTPS:</strong>
+        </p>
+        <pre>
+          <code>git clone https://github.com/web-dev-examples/css-navigation-menu.git</code>
+        </pre>
+
+        <ul>
+          <li>
+            <p>
+              The <code>index.html</code> file contains the core functionality
+              and markup required to replicate these features.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The <code>assets/css/style.css</code> file defines optional
+              enhancements to page layout and menu presentation.
+            </p>
+          </li>
+        </ul>
+      </article>
+    </main>
+
+    <footer>
+      <section id="copyright__contianer">
+        <span id="copyright__symbol">
+          &copy;
+        </span>
+
+        <span id="copyright__text">
+          S0AndS0
+          --
+          <a href="https://github.com/web-dev-examples/css-navigation-menu/blob/gh-pages/LICENSE">
+            AGPL-3.0
+          </a>
+          --
+        </span>
+
+        <span id="copyright__date">
+          2021
+        </span>
+      </section>
+    </footer>
+  </body>
+</html>
+<!--
+  vim: textwidth=79
+-->
